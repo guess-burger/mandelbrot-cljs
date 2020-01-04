@@ -42,19 +42,21 @@
       ([pos size]
        (translate pos size -2 2)))
 
-(def colour-start (rand 360))
+(def random-golden-ratio-colours
+  (->> (rand 360)
+       (iterate #(+ 222.5 %))
+       (map #(str "hsl(" % ",100%,50%)"))
+       (take max-iterations)
+       (vec)
+       (#(conj % "rgb(0,0,0)"))))
 
-(defn select-colour
-      [count]
-      (if (= count max-iterations)
-        "rgb(0,0,0)"
-        (-> count
-            (* 222.5)
-            (+ colour-start)
-            (#(str "hsl(" % ",100%,50%)")))))
-
-(def mem-select-colour
-  (memoize select-colour))
+(def gradient-colours
+  (->> 0
+       (iterate #(+ 2 %))
+       (map #(str "hsl(" % ",100%,50%)"))
+       (take max-iterations)
+       (vec)
+       (#(conj % "rgb(0,0,0)"))))
 
 (def canvas (.getElementById js/document "mandelbrot"))
 
@@ -71,7 +73,7 @@
                :let [xs (translate x (.-width canvas) x-lower-bound x-upper-bound)
                      ys (translate y (.-height canvas) y-lower-bound y-upper-bound)
                      its (count (iterations [xs ys]))
-                     colour (mem-select-colour its)]]
+                     colour (nth gradient-colours its)]]
               (set! (.-fillStyle ctx) colour)
               (.fillRect ctx x y 1 1)))
       ([]
