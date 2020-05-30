@@ -35,7 +35,7 @@
       "Translate a value to be within the bounds provided, or -2 < x < 2,
       given the size of canvas"
       #_([pos size]
-       (- (* 4 (/ pos size)) 2))
+         (- (* 4 (/ pos size)) 2))
       ([pos size lower-bound upper-bound]
        (-> pos
            (/ size)
@@ -60,6 +60,9 @@
        (vec)
        (#(conj % "rgb(0,0,0)"))))
 
+;; Change this to switch color scheme easily
+(def colour-scheme gradient-colours)
+
 (def canvas (.getElementById js/document "mandelbrot"))
 
 (def ctx (.getContext canvas "2d"))
@@ -75,7 +78,7 @@
                :let [xs (translate x (.-width canvas) x-lower-bound x-upper-bound)
                      ys (translate y (.-height canvas) y-lower-bound y-upper-bound)
                      its (count (iterations [xs ys]))
-                     colour (nth gradient-colours its)]]
+                     colour (nth colour-scheme its)]]
               (set! (.-fillStyle ctx) colour)
               (.fillRect ctx x y 1 1)))
       ([]
