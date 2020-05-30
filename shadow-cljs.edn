@@ -12,5 +12,5 @@
         :output-dir "public/mandelbrot-cljs/assets/app/js"
         :asset-path "/mandelbrot-cljs/assets/app/js"
         :modules {:main {:init-fn mandelbrot.core/render}}
-        :devtools {:http-root "public/mandelbrot-cljs"
+        :devtools {:http-root "public"
                    :http-port 8020}}}}
