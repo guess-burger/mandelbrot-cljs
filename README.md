@@ -30,7 +30,7 @@ iteration counts.
 
 ### Golden-Ratio Random
 Use this for a clear view of the different bands/iteration counts.
-This scheme is based on the concepts in this blog post https://martin.ankerl.com/2009/12/09/how-to-create-random-colors-programmatically/
+This scheme is based on the concept of [using the Golden Ratio to choose random colours that are easy to distinguish](https://martin.ankerl.com/2009/12/09/how-to-create-random-colors-programmatically/).
 
 ![Golden_Ratio_Random_scheme](docs/assets/golden.png)
 
