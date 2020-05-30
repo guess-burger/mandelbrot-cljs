@@ -20,7 +20,9 @@
 
 (defn smallish?
       [[r i]]
-      (> 2 (Math/sqrt (+ (* r r) (* i i)))))
+      #_(> 2 (Math/sqrt (+ (* r r) (* i i))))
+      ;; TODO need to actually check if this is more performant
+      (> 4 (Math/abs (+ (* r r) (* i i)))))
 
 (defn iterations
       [c]
@@ -52,7 +54,7 @@
 
 (def gradient-colours
   (->> 0
-       (iterate #(+ 2 %))
+       (iterate #(+ 3 %))
        (map #(str "hsl(" % ",100%,50%)"))
        (take max-iterations)
        (vec)
